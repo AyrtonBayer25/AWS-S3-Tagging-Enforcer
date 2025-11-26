@@ -1,14 +1,25 @@
 import argparse
 
 def parse_args():
-    """Parse command-line arguments for required tag key and value."""
+    """Parse command-line arguments for required tag key and value.
+    
+    This function sets up an ArgumentParser to handle user inputs for customizing
+    the tagging behavior, such as specifying the key and value for the required tag.
+    It defines default values if no arguments are provided and returns the parsed args.
+    """
     parser = argparse.ArgumentParser(description='AWS S3 Tagging Enforcer - Applies required tags to buckets.')
     parser.add_argument('--required_key', type=str, default='CostCenter', help='Required tag key (default: CostCenter).')
     parser.add_argument('--required_value', type=str, default='FinOps', help='Required tag value (default: FinOps).')
     return parser.parse_args()
 
 def enforce_tags(buckets, required):
-    """Enforce tags on buckets, logging before/after states and count of changes."""
+    """Enforce tags on buckets, logging before/after states and count of changes.
+    
+    This function iterates through a list of mock buckets, checks for the presence of
+    a required tag key, adds it if missing, logs the changes, and returns the count
+    of buckets that were updated. It prints the state of buckets before and after tagging
+    to demonstrate the enforcement process.
+    """
     tagged_count = 0
     print("Before:")
     for b in buckets:
